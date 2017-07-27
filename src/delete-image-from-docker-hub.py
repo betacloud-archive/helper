@@ -24,7 +24,6 @@ try:
     DOCKER_REGISTRY_USERNAME = os.environ['DOCKER_REGISTRY_USERNAME']
     DOCKER_REGISTRY_PASSWORD = os.environ['DOCKER_REGISTRY_PASSWORD']
     DOCKER_IMAGE = os.environ['DOCKER_IMAGE']
-    DOCKER_TAG = os.environ['DOCKER_TAG']
 except KeyError:
     sys.exit(1)
 
@@ -33,7 +32,7 @@ if __name__ == "__main__":
     response = requests.post("https://%s/v2/users/login" % DOCKER_REGISTRY, json={"username": DOCKER_REGISTRY_USERNAME, "password": DOCKER_REGISTRY_PASSWORD})
     token = response.json()['token']
     response = requests.delete(
-        "https://%s/v2/repositories/%s/tags/%s" % (DOCKER_REGISTRY, DOCKER_IMAGE, DOCKER_TAG),
+        "https://%s/v2/repositories/%s" % (DOCKER_REGISTRY, DOCKER_IMAGE),
         headers={"Authorization": "JWT %s" % token}
     )
     print response
