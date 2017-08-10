@@ -1,0 +1,26 @@
+---
+- name: Pull docker image from external registry
+  docker_image:
+    name: "{{ images_external[image] }}"
+    tag: "{{ images_external[tag] }}"
+    state: present
+
+- name: Tag and push docker image to local registry
+  docker_image:
+    name: "{{ images_external[image] }}"
+    tag: "{{ images_external[tag] }}"
+    repository: "{{ images_internal[image] }}"
+    push: yes
+
+- name: Remove local docker images
+#  docker_image:
+#    name: "{{ item_in_block }}"
+#    tag: "{{ images_external[tag] }}"
+#    state: absent
+# NOTE: use command here because docker_image module does not remove images pulled with index.docker.io in front
+  command: "docker rmi {{ item_in_block }}:{{ images_external[tag] }}"
+  with_items:
+    - "{{ images_internal[image] }}"
+    - "{{ images_external[image] }}"
+  loop_control:
+    loop_var: item_in_block
