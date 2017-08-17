@@ -1,5 +1,6 @@
 ---
-# ansible-playbook -i localhost, -e docker_registry_external=index.docker.io -e docker_registry_internal=registry.osism.io -e images_file=kolla-latest.yml transfer-images.yml
+# ansible-playbook -i localhost, -e docker_registry_external=index.docker.io -e docker_registry_internal=registry.osism.io -e docker_images_file=kolla-latest.yml transfer-images.yml
+
 - hosts: all
   connection: local
   gather_facts: no
@@ -8,12 +9,16 @@
     docker_registry_external: index.docker.io
     docker_registry_internal: registry.osism.io
     docker_namespace: osism
-    images_file: kolla-latest.yml
+    docker_images_file: kolla-latest.yml
 
   tasks:
   - name: Include images file
     include_vars:
-      file: "{{ images_file }}"
+      file: "{{ docker_images_file }}"
+
+  - name: Include images file as images variable
+    include_vars:
+      file: "{{ docker_images_file }}"
       name: images
 
   - name: Prepare internal images
