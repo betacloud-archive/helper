@@ -13,12 +13,10 @@
     push: yes
 
 - name: Remove local docker images
-#  docker_image:
-#    name: "{{ item_in_block }}"
-#    tag: "{{ images_external[tag] }}"
-#    state: absent
-# NOTE: use command here because docker_image module does not remove images pulled with index.docker.io in front
-  command: "docker rmi {{ item_in_block }}:{{ images_external[tag] }}"
+  docker_image:
+    name: "{{ item_in_block|regex_replace('index.docker.io/') }}"
+    tag: "{{ images_external[tag] }}"
+    state: absent
   with_items:
     - "{{ images_internal[image] }}"
     - "{{ images_external[image] }}"
