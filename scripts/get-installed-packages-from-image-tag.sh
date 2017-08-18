@@ -6,7 +6,7 @@ set -x
 # DOCKER_IMAGE_TAG
 # DOCKER_NAMESPACE
 
-python src/list-all-image-tags-from-docker-hub.py | grep $DOCKER_IMAGE_TAG > $DOCKER_IMAGE_TAG.lst
+python dockerhub/list-all-image-tags-from-dockerhub.py | grep $DOCKER_IMAGE_TAG > $DOCKER_IMAGE_TAG.lst
 
 while read image; do
     image_name=$(echo $image | awk -F: '{ print $1 }' | awk -F/ '{ print $NF }')
