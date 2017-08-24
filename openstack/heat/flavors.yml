@@ -1,0 +1,76 @@
+---
+heat_template_version: 2017-02-24
+
+resources:
+
+  flavor-1c-1gb-20gb:
+    type: OS::Nova::Flavor
+    properties:
+      name: 1C-1GB-20GB
+      flavorid: e5aa7d94
+      disk: 20
+      ephemeral: 0
+      ram: 1024
+      swap: 0
+      vcpus: 1
+      is_public: True
+
+  flavor-1c-2gb-20gb:
+    type: OS::Nova::Flavor
+    properties:
+      name: 1C-2GB-20GB
+      flavorid: 93b75c9e
+      disk: 20
+      ephemeral: 0
+      ram: 2048
+      swap: 0
+      vcpus: 1
+      is_public: True
+
+  flavor-1c-4gb-20gb:
+    type: OS::Nova::Flavor
+    properties:
+      name: 1C-4GB-20GB
+      flavorid: 7025cd88
+      disk: 20
+      ephemeral: 0
+      ram: 4096
+      swap: 0
+      vcpus: 1
+      is_public: True
+
+  flavor-2c-8gb-40gb:
+    type: OS::Nova::Flavor
+    properties:
+      name: 2C-8GB-40GB
+      flavorid: a173b496
+      disk: 40
+      ephemeral: 0
+      ram: 8192
+      swap: 0
+      vcpus: 2
+      is_public: True
+
+  flavor-2c-16gb-40gb:
+    type: OS::Nova::Flavor
+    properties:
+      name: 2C-16GB-40GB
+      flavorid: 7bf5d18f
+      disk: 40
+      ephemeral: 0
+      ram: 16384
+      swap: 0
+      vcpus: 2
+      is_public: True
+
+  flavor-4c-32gb-80gb:
+    type: OS::Nova::Flavor
+    properties:
+      name: 4C-32GB-80GB
+      flavorid: a8a47de6
+      disk: 80
+      ephemeral: 0
+      ram: 32768
+      swap: 0
+      vcpus: 4
+      is_public: True

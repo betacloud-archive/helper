@@ -34,7 +34,7 @@ for organization in CONFIG:
     for repository in gh.get_organization(organization).get_repos():
         print repository.name
         repository.edit(
-            homepage=data['homepage'],
+            has_downloads=data['has_downloads'],
             has_wiki=data['has_wiki'],
-            has_downloads=data['has_downloads']
+            homepage=data['homepage']
         )

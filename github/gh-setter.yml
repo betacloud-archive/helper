@@ -1,9 +1,11 @@
 ---
 osism:
   has_downloads: false
+  has_projects: false
   has_wiki: false
   homepage: https://www.osism.io
 betacloud:
   has_downloads: false
+  has_projects: false
   has_wiki: false
   homepage: https://www.betacloud.io
